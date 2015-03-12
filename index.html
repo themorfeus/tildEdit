@@ -1,0 +1,164 @@
+
+<!doctype html>
+<html>
+
+<head>
+
+	<title>tildEdit</title>
+
+	<link rel="stylesheet" href="css/reset.css">
+	<link rel="stylesheet" href="css/style.css">
+	<link rel="stylesheet" href="css/font-awesome.min.css">
+
+	<script src="js/jquery-1.11.2.min.js"></script>
+	<script src="js/jspdf.min.js"></script>
+
+	<script>
+
+		function newText(){
+			$("#editor").html("Empty document");
+		}
+
+		function applyTag(tag, option){
+			document.execCommand("styleWithCSS", false, true);
+			document.execCommand(tag, false, option);
+		}
+
+		function resize(size){
+			document.execCommand("fontSize", false, 2);
+			$("#editor font[size]").removeAttr("size").css("font-size", size);
+		}
+
+		function block(level){
+			document.execCommand("formatBlock", false, "<" + level + ">");
+		}
+
+		function linkImage(){
+			var res = window.prompt("enter the full url (including http:// or file:// prefix) to an image","http://google.com/");
+
+			document.execCommand("styleWithCSS", false, true);
+			document.execCommand("insertImage", false, res);
+		}
+
+		// function pickImage(){
+			
+		// }
+
+		// $(document).ready(function(){
+		// 	$('#img_file').click(function(){
+		// 		$('#img_f').click();
+		// 	});
+
+		// 	$('#img_f').change(function () {
+		// 	    console.log($('#img_f').val());
+		// 	});
+		// });
+	</script>
+
+	<script>
+     function toPDF() {
+		var doc = new jsPDF();
+
+		// We'll make our own renderer to skip this editor
+		var specialElementHandlers = {
+			'#editor': function(element, renderer){
+				return true;
+			}
+		};
+
+		// All units are in the set measurement for the document
+		// This can be changed to "pt" (points), "mm" (Default), "cm", "in"
+		doc.fromHTML($('#editor').get(0), 15, 15, {
+			'width': 170, 
+			'elementHandlers': specialElementHandlers
+		});
+
+        doc.output('dataurl');
+    }
+	</script>
+
+</head>
+
+<body>
+
+ 	<div class="editor" id="editor" onClick="this.contentEditable='true';" contenteditable="true">
+ 		<p>Empty document</p>
+ 	</div>
+
+
+	<div class="navmenu"  id="navmenu">
+	<i class="nohover"><img src="img/logo.png"></i>
+
+	<button onclick="newText();"><i class="fa fa-pencil"><span>New</span></i></button>
+	<!--NYI-->
+ 	<!--<button><i class="fa fa-folder-open"><span>Open</span></i></button>-->
+ 	<button onclick="toPDF();" target="blank"><i class="fa fa-floppy-o"><span>Save</span></i></button>
+
+ 	<i class="spacer"></i>
+
+ 	<i class="fa fa-align-center">
+ 	<span>
+	 	<button onclick="applyTag('justifyLeft');"><i class="fa fa-align-left"></i></button>
+	 	<button onclick="applyTag('justifyCenter');"><i class="fa fa-align-center"></i></button>
+	 	<button onclick="applyTag('justifyRight');"><i class="fa fa-align-right"></i></button>
+	 	<button onclick="applyTag('justifyFull');"><i class="fa fa-align-justify"></i></button>
+ 	</span>
+ 	</i>
+
+ 	<i class="fa fa-font">
+ 	<span>
+ 		<select id="fontSelector" onchange="applyTag('fontName', $('#fontSelector').val());">
+			<option> Serif </option>
+			<option> Sans-Serif </option>
+			<option> Arial </option>
+			<option> Tahoma </option>
+			<option> Verdana </option>
+			<option> Lucida Sans Unicode </option>
+  		</select>
+ 	</span>
+ 	</i>
+
+	<i class="fa fa-header">
+	<span>
+		<button onclick="resize('1.00em');"><i class="fa fa-paragraph"></i></button>
+	 	<button onclick="resize('3.00em');"><i>1</i></button>
+	 	<button onclick="resize('2.50em');"><i>2</i></button>
+	 	<button onclick="resize('2.00em');"><i>3</i></button>
+	 	<button onclick="resize('1.50em');"><i>4</i></button>
+	 	<button onclick="resize('1.25em');"><i>5</i></button>
+ 	</span>
+	</i>
+
+	<i class="fa fa-bold">
+	<span>
+	 	<button onclick="applyTag('bold');"><i class="fa fa-bold"></i></button>
+	 	<button onclick="applyTag('italic');"><i class="fa fa-italic"></i></button>
+	 	<button onclick="applyTag('underline');"><i class="fa fa-underline"></i></button>
+	 	<button onclick="applyTag('strikethrough');"><i class="fa fa-strikethrough"></i></button>
+	 	<button onclick="applyTag('subscript');"><i class="fa fa-subscript"></i></button>
+	 	<button onclick="applyTag('superscript');"><i class="fa fa-superscript"></i></button>
+ 	</span>
+	</i>
+
+	<i class="spacer"></i>
+	<i class="fa fa-picture-o"></button>
+
+	<span>
+		<!--NYI-->
+		<!--<div style="position:absolute; top:-100em; width:0; height:0; overflow:hidden">
+			<input type='file' id="img_f">​
+		</div>
+	 	<button id="img_file"><i class="fa fa-folder-open"></i></button>-->
+	 	<button onclick="linkImage();"><i class="fa fa-chain"></i></button>
+ 	</span>
+
+	</i>
+
+ 	<i class="spacer"></i>
+ 	<button onclick="window.print();"><i class="fa fa-print"><span>Print</span></i></button>
+ 	
+ 	</div>
+
+</body>
+
+</html>

@@ -1,0 +1,166 @@
+html, body{
+	width: 100%;
+	font-size:104%;
+	font-family:serif;
+}
+
+select{
+
+	background-color:#fff;
+	border:0;
+	padding:.5em;
+	margin:.2em;
+	border-radius:1em;
+
+	transition:all .3s linear;
+
+}
+
+textarea{
+	width:100%;
+	height:100%;
+}
+
+button{
+	background:transparent;
+	border:0;
+	margin:0;
+	padding:0;
+	color:inherit;
+	font-size:1em;
+}
+
+input.btn{
+	background:transparent;
+	border:0;
+	margin:0;
+	padding:0;
+	color:inherit;
+	font-size:1em;
+	width:1em;
+}
+
+
+sup{
+	font-size:80%;
+	vertical-align: super;
+}
+
+sub{
+	font-size:80%;
+	vertical-align: sub;
+}
+
+.navmenu i{
+	font-style:normal;
+}
+
+.navmenu{
+	font-family:sans-serif;
+	position:fixed;
+	top:0;
+	bottom:0;
+	left:0;
+	font-size:2em;
+	width:2em;
+	color:#40afff;
+	background-color:#222222;
+	transition:all .3s linear;
+
+}
+
+.navmenu.hidden{
+	font-size:1em;
+}
+
+.navmenu i{
+	padding:.5em;
+	display: inline-block; /* Enable widths */
+ 	width: 1em;            /* Set width across all characters */
+  	text-align: center;    /* Even out spacing */
+
+
+	transition: background-color .15s linear;
+	transition: color .15s linear;
+}
+.navmenu i:hover{
+	color:#222222;
+	background-color:#40afff;
+}
+
+.navmenu img{
+	width:1em;
+	height:auto;
+}
+
+.navmenu i.nohover{
+	background-color:#222222;
+}
+
+.navmenu i span{
+	font-family:sans-serif;
+	display:none;
+	white-space: nowrap;
+
+	padding:1em;
+	padding-left:.5em;
+
+	background-color: rgba(0,0,0,0.6);
+	color:#eeeeee;
+	border-radius: 0 .2em .2em 0;
+
+	position:absolute;
+	left:4em;
+	top:0;
+	line-height:2em;
+	font-size:.5em;
+	width:auto;
+	transition: all .3s linear;
+}
+
+.navmenu i:hover span{
+	display:inline-block;
+}
+
+.navmenu i.spacer{
+	color:transparent;
+	background-color:transparent;
+	white-space:nowrap;
+	text-align: left;
+}
+
+.editor{
+	text-align:center;
+
+	width:45em;
+
+	margin: 0 auto;
+	margin-top:2em;
+	margin-bottom:2em;
+
+	padding:2em; /* Dependant on settings */
+	
+	border:1px solid #efefef;
+}
+
+.editor h1{
+	font-size:3em;
+}
+
+.editor p{
+	margin:1em;
+}
+
+::selection { background: #409fff; color:#ffffff; border:1px solid #000000;}
+
+@media print {
+
+	.navmenu{
+		display:none;
+	}
+	.editor{
+		border: 0;
+		margin:0;
+
+	}
+}
