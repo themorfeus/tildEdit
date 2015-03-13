@@ -25,8 +25,12 @@
 		}
 
 		function resize(size){
+			document.execCommand("styleWithCSS", false, false);
 			document.execCommand("fontSize", false, 7);
-			$("#editor font[size]").removeAttr("size").css("font-size", size);
+
+			var rep = $("#editor font[size]");
+			rep.removeAttr("size");
+			rep.css("font-size", size);
 		}
 
 		function block(level){
