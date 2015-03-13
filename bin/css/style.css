@@ -30,6 +30,7 @@ button{
 	color:inherit;
 	line-height:1em;
 	font-size:1em;
+	cursor:pointer;
 }
 
 input.btn{
@@ -51,10 +52,6 @@ sup{
 sub{
 	font-size:80%;
 	vertical-align: sub;
-}
-
-.navmenu i{
-	font-style:normal;
 }
 
 .navmenu{
@@ -80,7 +77,8 @@ sub{
 	display: inline-block; /* Enable widths */
  	width: 1em;            /* Set width across all characters */
   	text-align: center;    /* Even out spacing */
-
+	font-style:normal;
+	position:relative;
 
 	transition: background-color .15s linear;
 	transition: color .15s linear;
