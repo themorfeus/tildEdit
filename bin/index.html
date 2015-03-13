@@ -25,7 +25,7 @@
 		}
 
 		function resize(size){
-			document.execCommand("fontSize", false, 2);
+			document.execCommand("fontSize", false, 7);
 			$("#editor font[size]").removeAttr("size").css("font-size", size);
 		}
 
@@ -40,19 +40,18 @@
 			document.execCommand("insertImage", false, res);
 		}
 
-		// function pickImage(){
-			
-		// }
+		function closeFonts(){
+			$("#fontSelect").removeClass("hover");
+		}
 
-		// $(document).ready(function(){
-		// 	$('#img_file').click(function(){
-		// 		$('#img_f').click();
-		// 	});
 
-		// 	$('#img_f').change(function () {
-		// 	    console.log($('#img_f').val());
-		// 	});
-		// });
+		$(document).ready(function(){
+			$("#fontSelector").hover(function(){
+					$("#fontSelect").addClass("hover");
+			}, function(){
+					//$("#fontSelect").removeClass("hover");
+			});
+		});
 	</script>
 
 	<script>
@@ -82,7 +81,7 @@
 <body>
 
  	<div class="editor" id="editor" onClick="this.contentEditable='true';" contenteditable="true">
- 		<p>Empty document</p>
+ 		Empty document
  	</div>
 
 
@@ -106,7 +105,7 @@
  	</i>
 
  	<i class="fa fa-font">
- 	<span>
+ 	<span id="fontSelect">
  		<select id="fontSelector" onchange="applyTag('fontName', $('#fontSelector').val());">
 			<option> Serif </option>
 			<option> Sans-Serif </option>
@@ -115,6 +114,8 @@
 			<option> Verdana </option>
 			<option> Lucida Sans Unicode </option>
   		</select>
+
+  		<button onclick="closeFonts();"><i class="fa fa-times"></i></button>
  	</span>
  	</i>
 
